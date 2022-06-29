@@ -1,0 +1,37 @@
+<div class="container">
+  <form class="form" [formGroup]="formLogin" (ngSubmit)="submit()">
+    <h2>Log in</h2>
+
+    <div class="formItem">
+      <mat-form-field appearance="outline">
+        <mat-label>Login</mat-label>
+        <input matInput formControlName="login" />
+        <mat-error *ngIf="formLogin.get('login')?.hasError('required')">
+          Login must be <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="formLogin.get('login')?.hasError('email')">
+          Login must be of <strong>type email</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field appearance="outline">
+        <mat-label>Enter your password</mat-label>
+        <input formControlName="password" matInput type="password" />
+        <mat-error *ngIf="formLogin.get('password')?.hasError('minlength')">
+          Password must contain <strong>6 characters</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <button
+      mat-raised-button
+      type="submit"
+      color="primary"
+      [disabled]="!formLogin.valid"
+    >
+      Log In
+    </button>
+    <button mat-button routerLink="/registration">Registration</button>
+  </form>
+</div>

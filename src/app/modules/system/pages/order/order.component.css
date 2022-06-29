@@ -1,0 +1,49 @@
+.container {
+  max-width: 1000px;
+  margin: 10px 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 2px solid gray;
+  border-radius: 10px;
+}
+.details {
+  padding: 10px;
+  justify-content: center;
+  text-align: center;
+  background-color: #e3eeee;
+  width: 50%;
+}
+.details p {
+  font-size: 14px;
+}
+.order {
+  display: flex;
+}
+.orderInfo {
+  margin: auto;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+.orderInfo h3 {
+  color: #fff;
+}
+.selectStatus {
+  color: #fff;
+}
+.services {
+  background-color: bisque;
+  justify-content: center;
+  text-align: center;
+  width: 50%;
+}
+.sub:hover,
+.service:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+.btn {
+  margin: 20px;
+}

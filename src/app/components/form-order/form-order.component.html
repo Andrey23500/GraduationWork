@@ -1,0 +1,63 @@
+<div class="container">
+  <form class="form" [formGroup]="formOrder" (ngSubmit)="submit()">
+    <h3 *ngIf="dataInput; else elseBlock">Edit order</h3>
+    <ng-template #elseBlock>
+      <h3>Add order</h3>
+    </ng-template>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Order name</mat-label>
+        <input formControlName="name" matInput />
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Subscriber</mat-label>
+        <select formControlName="subscriberRef" matNativeControl>
+          <option></option>
+          <option *ngFor="let item of subscribers" [value]="item.id">
+            {{ item.name }}
+          </option>
+        </select>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Services</mat-label>
+        <mat-select formControlName="serviceRef" multiple>
+          <ng-container *ngFor="let item of services">
+            <mat-option *ngIf="item.activity" [value]="item.id">
+              {{ item.name }}
+            </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field class="example-full-width" appearance="legacy">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+      </mat-form-field>
+    </div>
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="dataInput; else elseAdd"
+        type="submit"
+      >
+        Edit
+      </button>
+      <ng-template #elseAdd>
+        <button mat-raised-button color="primary" type="submit">Add</button>
+      </ng-template>
+      <button mat-button type="button" (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

@@ -1,0 +1,7 @@
+<h2 mat-dialog-title *ngIf="data === 'order'">Delete order?</h2>
+<h2 mat-dialog-title *ngIf="data === 'subscriber'">Delete subscriber?</h2>
+<h2 mat-dialog-title *ngIf="data === 'service'">Delete service?</h2>
+<div mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close="true" color="primary">Yes</button>
+  <button mat-stroked-button mat-dialog-close="false">No</button>
+</div>

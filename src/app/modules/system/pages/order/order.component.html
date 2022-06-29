@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="info">
+    <mat-toolbar color="primary">
+      <mat-list role="list" class="orderInfo">
+        <mat-list-item role="listitem"
+          ><h3>{{ order?.name }}</h3></mat-list-item
+        >
+        <mat-list-item role="listitem" *ngIf="user?.role === 'admin'">
+          <mat-form-field appearance="legacy" class="selectStatus">
+            <mat-label>Change status</mat-label>
+            <mat-select (selectionChange)="upOrder(order, $event.value)">
+              <mat-option value="In progress">In progress</mat-option>
+              <mat-option value="Created" selected>Created</mat-option>
+              <mat-option value="Rejected">Rejected</mat-option>
+              <mat-option value="Completed">Completed</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </mat-list-item>
+        <mat-list-item role="listitem" *ngIf="user?.role === 'admin'">
+          <button mat-mini-fab (click)="openDialog(order)">
+            <mat-icon class="icon">delete</mat-icon>
+          </button></mat-list-item
+        >
+      </mat-list>
+    </mat-toolbar>
+    <div class="order">
+      <div class="details">
+        <h2>Info</h2>
+        <mat-list role="list">
+          <mat-list-item role="listitem"
+            >Create date:{{ order?.createDate | date }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >Guess date:{{ order?.guessDate | date }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >Complete date:{{ order?.completeDate | date }}</mat-list-item
+          >
+          <mat-list-item role="listitem"
+            >Description:{{ order?.description }}</mat-list-item
+          >
+          <mat-list-item
+            class="sub"
+            role="listitem"
+            (click)="showInfoSub(order?.subscriberRef)"
+            >Subscriber:{{
+              (getSub(order?.subscriberRef) | async)?.name
+            }}</mat-list-item
+          >
+        </mat-list>
+      </div>
+      <div class="services">
+        <h2>Services</h2>
+        <mat-list role="list">
+          <mat-list-item *ngFor="let item of order?.serviceRef" role="listitem"
+            ><p (click)="showInfoService(item)" class="service">
+              Service :
+
+              {{ (getService(item) | async)?.name }}
+            </p>
+            <button
+              class="btn"
+              mat-mini-fab
+              color="primary"
+              *ngIf="user?.role === 'admin' || user?.role === 'customer'"
+              (click)="deleteService(item)"
+            >
+              <mat-icon class="icon">delete</mat-icon>
+            </button>
+          </mat-list-item>
+        </mat-list>
+        <button
+          *ngIf="user?.role === 'admin' || user?.role === 'customer'"
+          class="btn"
+          mat-raised-button
+          color="primary"
+          (click)="addService()"
+        >
+          Add Service
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

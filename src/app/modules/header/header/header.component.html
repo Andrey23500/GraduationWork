@@ -1,0 +1,34 @@
+<mat-toolbar color="primary" class="header">
+  <div class="home" routerLink="/system/home" routerLinkActive="active">
+    <mat-icon aria-hidden="false">home</mat-icon>
+    <span>Order monitoring </span>
+  </div>
+  <div class="profile">
+    <img
+      src="./assets/logo.jpg"
+      alt=""
+      class="profile__img"
+      (click)="show = !show"
+    />
+  </div>
+</mat-toolbar>
+
+<app-pop-up class="popUp" *ngIf="show"></app-pop-up>
+
+<nav mat-tab-nav-bar ngClass="tabs" class="tabs">
+  <a mat-tab-link routerLink="/system/home" routerLinkActive="active">Home</a>
+  <a
+    mat-tab-link
+    routerLink="/system/sub"
+    routerLinkActive="active"
+    *ngIf="user?.role !== 'customer'"
+    >Subscribers</a
+  >
+  <a
+    mat-tab-link
+    routerLink="/system/service"
+    routerLinkActive="active"
+    *ngIf="user?.role !== 'customer'"
+    >Services</a
+  >
+</nav>

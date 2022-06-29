@@ -1,0 +1,55 @@
+<div class="container">
+  <form class="form" [formGroup]="formService" (ngSubmit)="submit()">
+    <h2 *ngIf="data; else elseBlock">Edit service</h2>
+    <ng-template #elseBlock>
+      <h2>Add service</h2>
+    </ng-template>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Service name</mat-label>
+        <input formControlName="name" matInput />
+        <mat-error *ngIf="formService.get('name')?.hasError('required')">
+          Service name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Select an option</mat-label>
+        <mat-select disableRipple formControlName="activity">
+          <mat-option [value]="true">Active</mat-option>
+          <mat-option [value]="false">Inactive</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field class="example-full-width" appearance="legacy">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error *ngIf="formService.get('description')?.hasError('required')">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        *ngIf="data; else elseAdd"
+        type="submit"
+        color="primary"
+      >
+        Edit
+      </button>
+      <ng-template #elseAdd>
+        <button mat-raised-button type="submit" color="primary">Add</button>
+      </ng-template>
+      <button mat-stroked-button type="button" (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>

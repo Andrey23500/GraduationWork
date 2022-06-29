@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Info subscriber</h2>
+  <div class="info">
+    <mat-list>
+      <mat-list-item>
+        <strong> Subscriber name: </strong> {{ data.name }}
+      </mat-list-item>
+      <mat-list-item>
+        <strong> Subscriber phone: </strong>{{ data.phone }}
+      </mat-list-item>
+      <mat-list-item>
+        <strong> Home address: </strong>{{ data.homeAddress }}
+      </mat-list-item>
+
+      <mat-list-item>
+        <strong> Registration date: </strong>{{ data.registrDate | date }}
+      </mat-list-item>
+      <mat-list-item>
+        <strong> Oreders: </strong> {{ data.ordersRef }}
+      </mat-list-item>
+      <mat-list-item>
+        <strong> Description: </strong> {{ data.description }}
+      </mat-list-item>
+    </mat-list>
+  </div>
+</div>

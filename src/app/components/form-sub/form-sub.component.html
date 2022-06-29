@@ -1,0 +1,72 @@
+<div class="container">
+  <form class="form" [formGroup]="formSubscriber" (ngSubmit)="submit()">
+    <h2 *ngIf="data; else elseBlock">Edit subscriber</h2>
+    <ng-template #elseBlock>
+      <h2>Add subscriber</h2>
+    </ng-template>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Subscriber name</mat-label>
+        <input formControlName="name" matInput />
+        <mat-error *ngIf="formSubscriber.get('name')?.hasError('required')">
+          Subscriber name is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Phone</mat-label>
+        <input formControlName="phone" matInput />
+        <mat-error *ngIf="formSubscriber.get('phone')?.hasError('required')">
+          Subscriber phone is <strong>required</strong>
+        </mat-error>
+        <mat-error *ngIf="formSubscriber.get('phone')?.hasError('pattern')">
+          <strong>Invalid</strong> mobile number
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field appearance="legacy">
+        <mat-label>Home address</mat-label>
+        <input formControlName="homeAddress" matInput />
+        <mat-error
+          *ngIf="formSubscriber.get('homeAddress')?.hasError('required')"
+        >
+          Home addressis <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="formItem">
+      <mat-form-field class="example-full-width" appearance="legacy">
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description"></textarea>
+        <mat-error
+          *ngIf="formSubscriber.get('description')?.hasError('required')"
+        >
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        *ngIf="data; else elseAdd"
+        type="submit"
+        color="primary"
+      >
+        Edit
+      </button>
+      <ng-template #elseAdd>
+        <button mat-raised-button type="submit" color="primary">Add</button>
+      </ng-template>
+      <button mat-stroked-button type="button" (click)="dialogRef.close()">
+        Cancel
+      </button>
+    </mat-dialog-actions>
+  </form>
+</div>
